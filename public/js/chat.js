@@ -31,8 +31,7 @@ socket.on('disconnect', function () {
 });
 
 socket.on('updateUserList', function (userList) {
-  console.log('Users list', userList);
-  var ol = jQuery('<ol></ol>')
+  var ol = jQuery('<ol></ol>');
   userList.forEach(function(user) {
     ol.append(jQuery('<li></li>').text(user));
   });
@@ -72,7 +71,7 @@ jQuery('#message-form').on('submit', function (e) {
   var params = jQuery.deparam(window.location.search);
 
   socket.emit('createMessage', {
-    from: params.name, text: messageTextbox.val()
+    text: messageTextbox.val()
   }, function () {
     $("#message").focus();
     messageTextbox.val('')
